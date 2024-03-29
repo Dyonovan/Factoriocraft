@@ -1,0 +1,4 @@
+@MethodsReturnNonnullByDefault
+package com.dyonovan.factoriocraft.providers;
+
+import net.minecraft.MethodsReturnNonnullByDefault;

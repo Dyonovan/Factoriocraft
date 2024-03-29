@@ -15,11 +15,16 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.capabilities.Capabilities;
+import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.common.extensions.IMenuTypeExtension;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 @SuppressWarnings("unused")
+@Mod.EventBusSubscriber(modid = Factoriocraft.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class Registration {
 
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(Factoriocraft.MODID);
@@ -66,4 +71,11 @@ public class Registration {
             .displayItems((parameters, output) -> {
                 output.accept(RESEARCH_STATION_BLOCK_ITEM.get());
             }).build());
+
+    @SubscribeEvent
+    private static void registerCapabilities(RegisterCapabilitiesEvent event) {
+        event.registerBlockEntity(
+                Capabilities.EnergyStorage.BLOCK, RESEARCH_STATION_BLOCK_ENTITY.get(), ResearchStationBlockEntity::getEnergyBank
+        );
+    }
 }
