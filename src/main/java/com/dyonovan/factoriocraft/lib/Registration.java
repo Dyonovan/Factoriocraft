@@ -75,7 +75,7 @@ public class Registration {
     @SubscribeEvent
     private static void registerCapabilities(RegisterCapabilitiesEvent event) {
         event.registerBlockEntity(
-                Capabilities.EnergyStorage.BLOCK, RESEARCH_STATION_BLOCK_ENTITY.get(), ResearchStationBlockEntity::getEnergyBank
+                Capabilities.EnergyStorage.BLOCK, RESEARCH_STATION_BLOCK_ENTITY.get(), (researchStationBlockEntity, direction) -> researchStationBlockEntity.getEnergyBank()
         );
     }
 }

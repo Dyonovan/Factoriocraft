@@ -21,6 +21,8 @@ import org.jetbrains.annotations.Nullable;
 
 public class ResearchStationBlockEntity extends EnergyAndItemHandler implements MenuProvider {
 
+    private static int requiredTicks;
+
     protected InventoryHolderCapability inventory;
 
     public final ContainerData data = new ContainerData() {
@@ -59,6 +61,10 @@ public class ResearchStationBlockEntity extends EnergyAndItemHandler implements 
             }
         };
         inventory.addCallback((inventory, slotNumber) -> markForUpdate(Block.UPDATE_ALL));
+    }
+
+    @Override
+    public void onServerTick() {
 
     }
 
@@ -77,7 +83,7 @@ public class ResearchStationBlockEntity extends EnergyAndItemHandler implements 
         };
     }
 
-    public EnergyBank getEnergyBank(Direction direction) {
+    public EnergyBank getEnergyBank() {
         return energyStorage;
     }
 
